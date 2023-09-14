@@ -1,0 +1,52 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <string>
+using namespace std;
+
+const int al = 200; //размер алфавита
+vector<int> p, c, cnt(al);
+int n, len;
+
+bool cmp(int j, int k) { //компаратор для сортировки
+	return c[j] < c[k] || c[j] == c[k] && c[(j + len) % n] < c[(k + len) % n];
+}
+
+//функция, которая пересчитывает массив классов эквивалентности
+vector<int> getC(vector<int>& p, vector<int>& c) {
+	int k = 0; //номер класса эквивалентности
+	vector<int> new_c(n);
+	new_c[p[0]] = 0;
+	for (int i = 1; i < n; ++i) {
+		if (cmp(p[i - 1], p[i]) != cmp(p[i], p[i - 1])) k++;
+		new_c[p[i]] = k;
+	}
+	return new_c;
+}
+
+int main() {
+	string s;
+	cin >> s;
+	n = s.size();
+	p.resize(n);
+	c.resize(n);
+	//получение первой перестановки сортировкой подсчетом
+	for (int i = 0; i < n; ++i) 
+		cnt[s[i]]++;
+	for (int i = 1; i < al; ++i)
+		cnt[i] += cnt[i - 1];
+	for (int i = 0; i < n; ++i) 
+		p[--cnt[s[i]]] = i;
+	int k = 0;
+	len = 1;
+	c[p[0]] = 0; //получение первого массива классов эквивалентности
+	for (int i = 1; i < n; ++i) {
+		if (s[p[i - 1]] != s[p[i]]) k++;
+		c[p[i]] = k;
+	}
+	for (int stage = 1; len < n; ++stage) { //основая часть
+		sort(p.begin(), p.end(), cmp);
+		c = getC(p, c);
+		len *= 2;
+	}
+}

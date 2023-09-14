@@ -1,0 +1,4 @@
+﻿  Source.cpp
+D:\Visual Studio\SuffMass\hash\Source.cpp(11,26): warning C4244: инициализация: преобразование "double" в "__int64", возможна потеря данных
+D:\Visual Studio\SuffMass\hash\Source.cpp(11,21): warning C4244: инициализация: преобразование "double" в "const __int64", возможна потеря данных
+  hash.vcxproj -> D:\Visual Studio\SuffMass\Debug\hash.exe

@@ -1,0 +1,4 @@
+﻿  Source.cpp
+D:\Visual Studio\SuffMass\gen\Source.cpp(25,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+D:\Visual Studio\SuffMass\gen\Source.cpp(27,6): warning C4101: n: неиспользованная локальная переменная
+  gen.vcxproj -> D:\Visual Studio\SuffMass\Debug\gen.exe
